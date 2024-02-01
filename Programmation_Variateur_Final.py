@@ -22,6 +22,10 @@ def main():
     cap = cv2.VideoCapture(0)
     cap.set(3, wCam)
     cap.set(4, hCam)
+    
+    color = (0, 255, 0)
+    x = 640
+    y = 360
 
     while True:
         #Lecture de la vidéo et détection des mains
@@ -36,8 +40,6 @@ def main():
            # x3, y3 = landmark_list[20][1], landmark_list[20][2] #L'auriculaire
        
 
-           
-
             #Dessine des points et la ligne entre le pouce et l'index
             #cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
             cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
@@ -45,6 +47,8 @@ def main():
            
             print(landmark_list[9]) #landmark_list[8], landmark_list[20]
             
+            
+            cv2.circle(img, (x, y), 5, color, -1)
           # try:
     
            # except Exception as e:
@@ -59,15 +63,13 @@ def main():
         flipped = cv2.flip(img, 2)
 
         
-
         #Changement de taille d'écriture FPS
         cv2.putText(flipped, f'FPS: {int(fps)}', (40, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 100), 2)
 
         #Affichage de l'image
         cv2.imshow("image", flipped)
 
-        
-            
+         
         #Quitter la boucle si la touche 'q' est enfoncé
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
