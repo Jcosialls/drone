@@ -51,7 +51,7 @@ def main():
             cv2.circle(img, (x, y), 5, color, -1)
           # try:
     
-           # except Exception as e:
+           # except Exception as e
                 
     
         #Calcul du FPS
