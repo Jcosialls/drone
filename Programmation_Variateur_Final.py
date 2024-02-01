@@ -1,3 +1,4 @@
+# Code fait à partir du code de Murtaza's Workshop - Robotics and AI 
 import cv2
 import mediapipe as mp
 import time
@@ -30,19 +31,19 @@ def main():
 
         if len(landmark_list):
             #Extraction des points clés pour calculer la longueur entre le pouce et l'index
-            x1, y1 = landmark_list[8][1], landmark_list[8][2]
-            x2, y2 = landmark_list[9][1], landmark_list[9][2]
-            x3, y3 = landmark_list[20][1], landmark_list[20][2]
+           # x1, y1 = landmark_list[8][1], landmark_list[8][2] #L'index
+            x2, y2 = landmark_list[9][1], landmark_list[9][2] #Millieu du majeur
+           # x3, y3 = landmark_list[20][1], landmark_list[20][2] #L'auriculaire
        
 
            
 
             #Dessine des points et la ligne entre le pouce et l'index
-            cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
+            #cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
             cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
-            cv2.circle(img, (x3, y3), 10, (255, 0, 255), cv2.FILLED)
+            #cv2.circle(img, (x3, y3), 10, (255, 0, 255), cv2.FILLED)
            
-            print(landmark_list[8], landmark_list[9], landmark_list[20])
+            print(landmark_list[9]) #landmark_list[8], landmark_list[20]
             
           # try:
     
