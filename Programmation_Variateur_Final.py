@@ -4,6 +4,8 @@ import mediapipe as mp
 import time
 import ClassHandTrackingModule as htm
 import math
+from djitellopy import Tello
+
 
 
 
@@ -26,6 +28,11 @@ def main():
     color = (0, 255, 0)
     x3= 640
     y3 = 360
+    # Connexion au drone Tello
+    tello = Tello()
+    tello.connect()
+
+    tello.takeoff()
     
     while True:
         #Lecture de la vidéo et détection des mains
@@ -51,17 +58,15 @@ def main():
             cv2.circle(img, (x3, y3), 5, color, cv2.FILLED)
             cv2.line(img, (x3, y3), (x2, y2), (255, 0, 0), 2)
             #cv2.circle(img, (x3, y3), 10, (255, 0, 255), cv2.FILLED)
-           
+            
+            tello.send_rc_control(0, vy, 0, 0)  # Avancer/Reculer
+            tello.send_rc_control(vx, 0, 0, 0)  # Aller à gauche/droite
             print(landmark_list[9]) #landmark_list[8], landmark_list[20]
             print(length)
             print(cx,cy)
             print(vx,vy)
             
             
-            
-          # try:
-    
-           # except Exception as e
                 
     
         #Calcul du FPS
@@ -72,7 +77,6 @@ def main():
         #Retournement de l'image
         flipped = cv2.flip(img, 2)
 
-        
         #Changement de taille d'écriture FPS
         cv2.putText(flipped, f'FPS: {int(fps)}', (40, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 100), 2)
 
@@ -82,6 +86,7 @@ def main():
          
         #Quitter la boucle si la touche 'q' est enfoncé
         if cv2.waitKey(1) & 0xFF == ord('q'):
+            tello.land()
             break
 
     #Sortie de la programmation
