@@ -1,16 +1,40 @@
 import sqlite3
 
-connect = sqlite3.connect("test.db")
-cursor = connect.cursor()
+# Fonction pour ajouter une ligne dans la base de données avec les coordonnées en cours
+def ajouter_coordonnees(vel_x, vel_y, vel_z, time):
+    connect = sqlite3.connect("test.db")
+    cursor = connect.cursor()
 
-cursor.execute("CREATE TABLE IF NOT EXISTS coordonates (id INTTEGER PRIMARY KEY, x INTEGER, y INTEGER, z INTGER, time INTEGER)")
+    # Ajouter une nouvelle ligne à la table coordonates
+    cursor.execute("INSERT INTO coordonates (vel_x, vel_y, vel_z, time) VALUES (?, ?, ?, ?)",
+                   (vel_x, vel_y, vel_z, time))
 
-cursor.execute("INSERT INTO coordonates VALUES (2,0,0,0,0)")
+    # Valider et enregistrer les modifications
+    connect.commit()
 
-x = cursor.execute("SELECT x FROM coordonates")
-x.fetchone()
-print(f'the x coordonate is : {x}')
+    # Fermer la connexion
+    connect.close()
 
-connect.commit()
 
-connect.close()
+# Fonction pour supprimer les lignes du tableau de la base de données
+def supprimer_toutes_coordonnees():
+    connect = sqlite3.connect("test.db")
+    cursor = connect.cursor()
+
+    # Supprimer toutes les lignes de la table coordonates
+    cursor.execute("DELETE FROM coordonates")
+
+    # Valider et enregistrer les modifications
+    connect.commit()
+
+    # Fermer la connexion
+    connect.close()
+
+
+
+ajouter_coordonnees(1,1,1,0)
+supprimer_toutes_coordonnees()
+
+
+
+
