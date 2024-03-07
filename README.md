@@ -1,8 +1,10 @@
 
-# Projet : Drone Kit Mains libres
+# Projet : Drone Kit Mains Libres
 
-The drone must navigate with help your hand, and a camera.
-And show in real time, drone tracking on a 3D map.
+Le drone est pilotées à l'aide de la main, via à une caméra.
+Et montre en temps réel, le déplacement du drone sur une map 3D.
+
+
 
 
 ## Documentation
@@ -16,32 +18,37 @@ And show in real time, drone tracking on a 3D map.
 [Downloads - DB Browser for SQLite](https://sqlitebrowser.org/dl/)
 
 ![DB browers for SQLite](https://s.getwinpcsoft.com/screenshots/6080/6080575_1.jpg)
-
 ## FAQ
 
-#### Question 1 : How to start the drone ?
+#### Question 1 : Comment faire fonctionner le drone ?
 
-You need to open your hand
+Ouvrire votre main sur le plan de la caméra
 
-#### Question 2 : How to stop the drone ?
+#### Question 2 : Comment stopper le robot ?
 
-You need to close your hand
+Fermer votre main sur le plan de la caméra
 
-#### Question 3 : How to move the drone left and right ? 
+#### Question 3 : Comment avancer et reculer le drone ? 
 
-You need to move your hand in the left and right camera plane
+Pour avancer : maintenez votre main en position ouverte et avance votre main sur le plan de la caméra
 
-#### Question 4 : How can the drone go up ?
+Pour reculer : maintenez votre main en position ouverte et reculer votre main sur le plan de la caméra
 
-You need to plie the middle finger tip
+#### Question 4 : Comment piloter le drone de gauche à droite ? 
 
-#### Question 5 : How can the drone go down ?
+Bouger votre main (en position ouverte) de gauche à droite sur le plan de la caméra
 
-You need to plie the index finger tip
+#### Question 5 : Comment augmenter la hauteur du drone ?
 
-#### Question 6 : How to rotate the drone ? 
+Plier le majeur de votre main sur le plan de la caméra
 
-You need to rotate your hand in camera plane
+#### Question 6 : Comment diminuer la hauteur du drone ? 
+
+Plier l'index de votre main sur le plan de la caméra
+
+#### Question 7 : Comment faire une rotation du drone ?
+
+Faire une rotation de la main en horizontal sur le plan de la caméra
 
 ## Tracking drone and Map 3D
 ## Database
