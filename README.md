@@ -56,7 +56,4 @@ Insert gif or link to demo
 
 ![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0)
 
-![](https://media.tenor.com/images/def0b505caff9c9160c22dabc987d4ca/tenor.gif)
-
-![](https://github.com/Jcosialls/drone/blob/main/Photo/VID_20240219_120044.mp4)
 
