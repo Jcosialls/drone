@@ -1,7 +1,7 @@
 
-# Drone
+# Projet : Drone Kit Mains libres
 
-The drone must navigate to help your hand, and a camera.
+The drone must navigate with help your hand, and a camera.
 And show in real time, drone tracking on a 3D map.
 
 
