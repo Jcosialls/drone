@@ -1,3 +1,4 @@
+
 # Drone
 
 The drone must navigate to help your hand, and a camera.
@@ -42,6 +43,8 @@ You need to plie the index finger tip
 
 You need to rotate your hand in camera plane
 
+## Tracking drone and Map 3D
+## Database
 ## Running Tests
 
 To run tests, run the following command
@@ -50,11 +53,11 @@ To run tests, run the following command
   python .\Control_Drone_Main
 ```
 
-## Demo
 
-Insert gif or link to demo
-
-![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0)
+## Demonstration
 
 ![Untitled ‑ Made with FlexClip (1)](https://github.com/Jcosialls/drone/assets/119425942/cfd56459-cef8-4762-8180-af7dca581747)
 
+
+## Future optimization
+![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0) 
