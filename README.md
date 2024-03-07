@@ -1,7 +1,7 @@
 
 # Projet : Drone Kit Mains Libres
 
-Le drone est pilotées à l'aide de la main, via à une caméra.
+Le drone est piloté à l'aide de la main, via à une caméra.
 Et montre en temps réel, le déplacement du drone sur une map 3D.
 
 
