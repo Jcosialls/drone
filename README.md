@@ -1,7 +1,7 @@
 # Drone
 
-Le Drone doit naviguer à l'aide de la main, via à une caméra.
-Et afficher en tant réel, le tracking du drone sur une map 3D.
+The drone must navigate to help your hand, and a camera.
+And show in real time, drone tracking on a 3D map.
 
 
 ## Documentation
@@ -9,6 +9,13 @@ Et afficher en tant réel, le tracking du drone sur une map 3D.
 [Hand Tracking by Murtaza's Workshop - Robotics and AI ](https://www.youtube.com/watch?v=NZde8Xt78Iw)
 
 ![Mediapipe](https://cdn.statically.io/img/media.geeksforgeeks.org/wp-content/uploads/20210802154942/HandLandmarks.png)
+
+[SQLite tutorial](https://www.sqlitetutorial.net)
+
+[Downloads - DB Browser for SQLite](https://sqlitebrowser.org/dl/)
+
+![DB browers for SQLite](https://s.getwinpcsoft.com/screenshots/6080/6080575_1.jpg)
+
 ## FAQ
 
 #### Question 1 : How to start the drone ?
@@ -35,7 +42,17 @@ You need to plie the index finger tip
 
 You need to rotate your hand in camera plane
 
+## Running Tests
+
+To run tests, run the following command
+
+```bash
+  python .\Control_Drone_Main
+```
+
+
 ## Demo
 
 Insert gif or link to demo
 ![](https://media.tenor.com/images/def0b505caff9c9160c22dabc987d4ca/tenor.gif)
+
