@@ -32,19 +32,20 @@ def main():
     color = (0, 255, 0)
     x_center= 640
     y_center = 360
-
-    #tello.takeoff()
     
     while True:
-        #Lecture de la vidéo et détection des mains
+
+        # Lecture de la vidéo et détection des mains
         success, img = cap.read()
         img = detector.findHands(img)
         landmark_list = detector.findPosition(img, draw=False)
 
+        # Base de donnée
+
 
         if len(landmark_list):
          
-            #Extraction des points clés
+            # Extraction des points clés
             x0, y0 = landmark_list[0][1], landmark_list[0][2] #Base Main
             x1, y1 = landmark_list[12][1], landmark_list[12][2] #Bout Majeur
             x2, y2 = landmark_list[9][1], landmark_list[9][2] #Base Majeur
@@ -54,13 +55,25 @@ def main():
             x6, y6 = landmark_list[5][1], landmark_list[5][2] #Base Index
             x7, y7 = landmark_list[16][1], landmark_list[16][2] #Bout Annulaire
             x8, y8 = landmark_list[13][1], landmark_list[13][2] #Base Annulaire
+            x9, y9 = landmark_list[4][1], landmark_list[4][2] #Bout Pouce
 
-            #Détection main fermée/ouverte
+            # Détection main fermée/ouverte
 
             seuil_presence_phalange = 5
 
             distance = int(math.sqrt(abs((x8 - x7)^2 + (y8 - y7)^2)))
-            #print(distance, "distance")
+
+            # Détection flip
+
+            distance2 = int(math.sqrt(abs((x9 - x6)^2 + (y9 - y6)^2)))
+
+            seuil_presence_phalange_flip = 3
+
+            if distance2 > seuil_presence_phalange_flip:
+                if drone_in_flight == True:
+                    tello.flip_forward()
+
+            # Détection rotation main
 
             d_rotate = int(x1 - x2)
             print("d_rotate", d_rotate)
@@ -71,14 +84,11 @@ def main():
                 d_rotate = -55
 
             if distance > seuil_presence_phalange:
-                #print("Main ouverte")
                 if drone_in_flight == False:
-                    #print("drone false")
                     drone_in_flight = True
                     tello.takeoff()
                     
             else:
-                #print("Main fermée")
                 if drone_in_flight == True:
                     drone_in_flight = False
                     tello.land()
@@ -99,12 +109,12 @@ def main():
                 v_rotate = 0
             print("v_rotate", int(v_rotate))
 
+            # Montée / Descente
+
             d_auri = int(math.sqrt(abs((x4 - x3)^2 + (y4 - y3)^2)))
-            #print("d_auri", d_auri)
             d_index = int(math.sqrt(abs((x6 - x5)^2 + (y6 - y5)^2)))
-            #print("d_index", d_index)
             d_maj = int(math.sqrt(abs((x2 - x1)^2 + (y2 - y1)^2)))
-            #print("d_maj", d_maj)
+
 
             if d_index < d_auri:
                 v_high = -20
@@ -116,42 +126,42 @@ def main():
 
             print("v_high", v_high)
 
-            #Dessine des points et la ligne entre le pouce et l'index
+            # Dessine des points et la ligne entre le pouce et l'index
+
             cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
             cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
             cv2.circle(img, (x_center, y_center), 5, color, cv2.FILLED) #Point vert
             cv2.circle(img, (x4, y4), 5, (255, 0, 255), cv2.FILLED)
             cv2.line(img, (x_center, y_center), (x2, y2), (255, 0, 0), 2)
             cv2.line(img, (x_center, y_center), (x4, y4), (255, 0, 0), 2)
-            #cv2.circle(img, (x3, y3), 10, (255, 0, 255), cv2.FILLED)
+
+            # Avancer/Reculer
             
-            tello.send_rc_control(int(vx), int(vy), int(v_high), int(v_rotate))  # Avancer/Reculer
-            #tello.send_rc_control(int(vx), 0, 0, 0)  # Aller à gauche/droite
-            print(landmark_list[9]) #landmark_list[8], landmark_list[20]
+            tello.send_rc_control(int(vx), int(vy), int(v_high), int(v_rotate))  
+            print(landmark_list[9])
             print(length)
-            #print(cx,cy)
             print(vx,vy)
             
-        #Calcul du FPS
+        # Calcul du FPS
         cTime = time.time()
         fps = 1 / (cTime - pTime)
         pTime = cTime
 
-        #Retournement de l'image
+        # Retournement de l'image
         flipped = cv2.flip(img, 2)
 
-        #Changement de taille d'écriture FPS
+        # Changement de taille d'écriture FPS
         cv2.putText(flipped, f'FPS: {int(fps)}', (40, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 100), 2)
 
-        #Affichage de l'image
+        # Affichage de l'image
         cv2.imshow("image", flipped)
          
-        #Quitter la boucle si la touche 'q' est enfoncé
+        # Quitter la boucle si la touche 'q' est enfoncé
         if cv2.waitKey(1) & 0xFF == ord('q'):
             tello.land()
             break
 
-    #Sortie de la programmation
+    # Sortie du programme
     cap.release()
     cv2.destroyAllWindows()
 
