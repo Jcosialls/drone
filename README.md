@@ -52,6 +52,15 @@ Faire une rotation de la main en horizontal sur le plan de la caméra
 
 ## Tracking drone and Map 3D
 ## Database
+L'objectif de la base de donnée est de récuperer les données de vol du drone pour les stocker. On pourra par la suite les utiliser pour refaire le parcours sauvegardé.
+
+La capture des données se font tout d'abord en local, en utilisant un fichier .csv. Puis, une fois le vol terminé, les données sont stoquées dans la base de données.
+
+Le fichier database.py permet de réaliser les tests unitaires des fonctions utilisant notre base de données (test.db).
+
+Sur les images suivantes on voit les valeurs de test enregistré dans le fichier csv (en local) et dans la base de données.
+![Image du fichier csv](Photo/image_donnee_local.png)
+![Image de la table dans la base de donnée](Photo/image_donnee_sur_db.png)
 ## Running Tests
 
 To run tests, run the following command
