@@ -3,7 +3,7 @@ import time
 import mediapipe as mp
 
 class handDetector(): 
-        #Dectection de 2 main
+        #Dectection de 2 mains
     def __init__(self, mode=False, maxHands= 2, detectionCon=False, trackCon=0.5): 
         self.mode = mode 
         self.maxHands = maxHands
@@ -28,7 +28,7 @@ class handDetector():
                                                self.mpHands.HAND_CONNECTIONS)
         return img
         
-        #Dectection des landmark de la main
+        #Dectection des landmarks de la main
     def findPosition(self, img, handNo=0, draw= True) :
         lmlist = [] 
         myHand = None
@@ -51,7 +51,7 @@ class handDetector():
   
 def main() :
     
-   
+   #Camera
     cTime = 0
     pTime = 0
     cap = cv2.VideoCapture(0)
