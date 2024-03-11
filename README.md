@@ -58,6 +58,7 @@ La capture des données se fait tout d'abord en local, en utilisant un fichier .
 Le fichier database.py permet de réaliser les tests unitaires des fonctions utilisant notre base de données (test.db).
 
 Sur les images suivantes on voit les valeurs de test enregistré dans le fichier csv (en local) ainsi que dans la base de données.
+
 ![Image du fichier csv](Photo/image_donnee_local.png)
 ![Image de la table dans la base de donnée](Photo/image_donnee_sur_db.png)
 ## Running Tests
