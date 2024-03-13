@@ -1,0 +1,179 @@
+# Code fait à partir du code de Murtaza's Workshop - Robotics and AI
+import cv2
+import mediapipe as mp
+import time
+import ClassHandTrackingModule as htm
+import math
+from djitellopy import Tello
+import have_a_plot_handV as HPH
+
+
+def main():
+    # Connexion au drone Tello
+    tello = Tello()
+    tello.connect()
+
+    drone_in_flight = False
+    # Initialisation de la résolution de l'écran et des variables
+    wCam, hCam = 1280, 720
+    print(f"Résolution de la de l'écran : {wCam}x{hCam}")
+    length = 0
+    v_high = 0
+
+    # Initialisation du détecteur de mains
+    cTime = 0
+    pTime = 0
+
+    # Initialisation de la capture vidéo
+    cap = cv2.VideoCapture(0)
+    cap.set(3, wCam)
+    cap.set(4, hCam)
+
+    color = (0, 255, 0)
+    x_center = 640
+    y_center = 360
+
+    # Init the 3D View
+    HPH.init()
+    HPH.plot_the_3D()
+    HPH.refresh_coo(0, 0, 0)
+
+    while True:
+
+        # Lecture de la vidéo et détection des mains
+        success, img = cap.read()
+        img = detector.findHands(img)
+        landmark_list = detector.findPosition(img, draw=False)
+
+        # Base de donnée
+
+        if len(landmark_list):
+
+            # Extraction des points clés
+            x0, y0 = landmark_list[0][1], landmark_list[0][2]  # Base Main
+            x1, y1 = landmark_list[12][1], landmark_list[12][2]  # Bout Majeur
+            x2, y2 = landmark_list[9][1], landmark_list[9][2]  # Base Majeur
+            x3, y3 = landmark_list[20][1], landmark_list[20][2]  # Bout Auriculaire
+            x4, y4 = landmark_list[17][1], landmark_list[17][2]  # Base Auriculaire
+            x5, y5 = landmark_list[8][1], landmark_list[8][2]  # Bout Index
+            x6, y6 = landmark_list[5][1], landmark_list[5][2]  # Base Index
+            x7, y7 = landmark_list[16][1], landmark_list[16][2]  # Bout Annulaire
+            x8, y8 = landmark_list[13][1], landmark_list[13][2]  # Base Annulaire
+            x9, y9 = landmark_list[4][1], landmark_list[4][2]  # Bout Pouce
+
+            # Détection main fermée/ouverte
+
+            seuil_presence_phalange = 5
+
+            distance = int(math.sqrt(abs((x8 - x7) ^ 2 + (y8 - y7) ^ 2)))
+
+            # Détection flip
+
+            distance2 = int(math.sqrt(abs((x9 - x6) ^ 2 + (y9 - y6) ^ 2)))
+
+            seuil_presence_phalange_flip = 3
+
+            if distance2 > seuil_presence_phalange_flip:
+                if drone_in_flight == True:
+                    tello.flip_forward()
+
+            # Détection rotation main
+
+            d_rotate = int(x1 - x2)
+            print("d_rotate", d_rotate)
+
+            if d_rotate > 55:
+                d_rotate = 55
+            if d_rotate < -55:
+                d_rotate = -55
+
+            if distance > seuil_presence_phalange:
+                if drone_in_flight == False:
+                    drone_in_flight = True
+                    tello.takeoff()
+
+            else:
+                if drone_in_flight == True:
+                    drone_in_flight = False
+                    tello.land()
+
+            cx, cy = (wCam - x2), (hCam - y2)
+            vx = -(50 - ((cx / 1280) * 100))
+            vy = -(50 - ((cy / 720) * 100))
+            length = math.hypot(x2 - x3, y2 - y3)
+
+            a = -55
+            b = 55
+            c = -50
+            d = 50
+
+            v_rotate = ((-d_rotate - a) * (d - c)) / (b - a) + c
+
+            if v_rotate < 10 and v_rotate > -10:
+                v_rotate = 0
+            print("v_rotate", int(v_rotate))
+
+            # Montée / Descente
+
+            d_auri = int(math.sqrt(abs((x4 - x3) ^ 2 + (y4 - y3) ^ 2)))
+            d_index = int(math.sqrt(abs((x6 - x5) ^ 2 + (y6 - y5) ^ 2)))
+            d_maj = int(math.sqrt(abs((x2 - x1) ^ 2 + (y2 - y1) ^ 2)))
+
+            if d_index < d_auri:
+                v_high = -20
+            else:
+                if d_maj < d_auri:
+                    v_high = 20
+                else:
+                    v_high = 0
+
+            print("v_high", v_high)
+
+            # Dessine des points et la ligne entre le pouce et l'index
+
+            cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
+            cv2.circle(img, (x2, y2), 10, (255, 0, 255), cv2.FILLED)
+            cv2.circle(img, (x_center, y_center), 5, color, cv2.FILLED)  # Point vert
+            cv2.circle(img, (x4, y4), 5, (255, 0, 255), cv2.FILLED)
+            cv2.line(img, (x_center, y_center), (x2, y2), (255, 0, 0), 2)
+            cv2.line(img, (x_center, y_center), (x4, y4), (255, 0, 0), 2)
+
+            # Avancer/Reculer
+
+            tello.send_rc_control(int(vx), int(vy), int(v_high), int(v_rotate))
+            print(landmark_list[9])
+            print(length)
+            print(vx, vy)
+
+            #actualise les coo sur la vue 3D
+            HPH.refresh_coo(vx, vy, v_high)
+
+        # Calcul du FPS
+        cTime = time.time()
+        fps = 1 / (cTime - pTime)
+        pTime = cTime
+
+        # Retournement de l'image
+        flipped = cv2.flip(img, 2)
+
+        # Changement de taille d'écriture FPS
+        cv2.putText(flipped, f'FPS: {int(fps)}', (40, 50), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 0, 100), 2)
+
+        # Affichage de l'image
+        cv2.imshow("image", flipped)
+
+        # Quitter la boucle si la touche 'q' est enfoncé
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            tello.land()
+            break
+
+    # Sortie du programme
+    cap.release()
+    cv2.destroyAllWindows()
+    HPH.end()
+
+
+if __name__ == "__main__":
+    main()
+
+
