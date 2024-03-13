@@ -2,9 +2,9 @@
 import cv2
 import mediapipe as mp
 import time
-import HandTrackingModule as htm
+import ClassHandTrackingModule as htm
 import math
-from djitellopy import Tello
+#from djitellopy import Tello
 
 def main():
     #Initialisation de la résolution de l'écran et des variables
@@ -26,10 +26,10 @@ def main():
     x3= 640
     y3 = 360
     # Connexion au drone Tello
-    tello = Tello()
-    tello.connect()
+    #tello = Tello()
+    #tello.connect()
 
-    tello.takeoff()
+    #tello.takeoff()
     
     while True:
         #Lecture de la vidéo et détection des mains
@@ -56,12 +56,12 @@ def main():
             cv2.line(img, (x3, y3), (x2, y2), (255, 0, 0), 2)
             #cv2.circle(img, (x3, y3), 10, (255, 0, 255), cv2.FILLED)
             
-            tello.send_rc_control(int(vx), int(vy), 0, 0)  # Avancer/Reculer
+            #tello.send_rc_control(int(vx), int(vy), 0, 0)  # Avancer/Reculer
             #tello.send_rc_control(int(vx), 0, 0, 0)  # Aller à gauche/droite
-            print(landmark_list[9]) #landmark_list[8], landmark_list[20]
-            print(length)
+            #print(landmark_list[9]) #landmark_list[8], landmark_list[20]
+            #print(length)
             #print(cx,cy)
-            print(vx,vy)
+            #print(vx,vy)
             
         #Calcul du FPS
         cTime = time.time()
@@ -80,7 +80,7 @@ def main():
          
         #Quitter la boucle si la touche 'q' est enfoncé
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            tello.land()
+            #tello.land()
             break
 
     #Sortie de la programmation

@@ -1,7 +1,10 @@
-# Drone
 
-The drone must navigate to help your hand, and a camera.
-And show in real time, drone tracking on a 3D map.
+# Projet : Drone Kit Mains Libres
+
+Le drone est piloté à l'aide de la main, via à une caméra.
+Et montre en temps réel, le déplacement du drone sur une map 3D.
+
+
 
 
 ## Documentation
@@ -15,33 +18,49 @@ And show in real time, drone tracking on a 3D map.
 [Downloads - DB Browser for SQLite](https://sqlitebrowser.org/dl/)
 
 ![DB browers for SQLite](https://s.getwinpcsoft.com/screenshots/6080/6080575_1.jpg)
-
 ## FAQ
 
-#### Question 1 : How to start the drone ?
+#### Question 1 : Comment faire fonctionner le drone ?
 
-You need to open your hand
+Ouvrire votre main sur le plan de la caméra
 
-#### Question 2 : How to stop the drone ?
+#### Question 2 : Comment stopper le robot ?
 
-You need to close your hand
+Fermer votre main sur le plan de la caméra
 
-#### Question 3 : How to move the drone left and right ? 
+#### Question 3 : Comment avancer et reculer le drone ? 
 
-You need to move your hand in the left and right camera plane
+Pour avancer : maintenez votre main en position ouverte et avance votre main sur le plan de la caméra
 
-#### Question 4 : How can the drone go up ?
+Pour reculer : maintenez votre main en position ouverte et reculer votre main sur le plan de la caméra
 
-You need to plie the middle finger tip
+#### Question 4 : Comment piloter le drone de gauche à droite ? 
 
-#### Question 5 : How can the drone go down ?
+Bouger votre main (en position ouverte) de gauche à droite sur le plan de la caméra
 
-You need to plie the index finger tip
+#### Question 5 : Comment augmenter la hauteur du drone ?
 
-#### Question 6 : How to rotate the drone ? 
+Plier le majeur de votre main sur le plan de la caméra
 
-You need to rotate your hand in camera plane
+#### Question 6 : Comment diminuer la hauteur du drone ? 
 
+Plier l'index de votre main sur le plan de la caméra
+
+#### Question 7 : Comment faire une rotation du drone ?
+
+Faire une rotation de la main en horizontal sur le plan de la caméra
+
+## Tracking drone and Map 3D
+## Database
+L'objectif de la base de donnée est de récuperer les données de vol du drone pour les stocker. On pourra par la suite les utiliser pour refaire le parcours sauvegardé.
+
+La capture des données se fait tout d'abord en local, en utilisant un fichier .csv. Puis, une fois le vol terminé, les données sont stoquées dans la base de données.
+Le fichier database.py permet de réaliser les tests unitaires des fonctions utilisant notre base de données (test.db).
+
+Sur les images suivantes on voit les valeurs de test enregistré dans le fichier csv (en local) ainsi que dans la base de données.
+
+![Image du fichier csv](Photo/image_donnee_local.png)
+![Image de la table dans la base de donnée](Photo/image_donnee_sur_db.png)
 ## Running Tests
 
 To run tests, run the following command
@@ -50,10 +69,11 @@ To run tests, run the following command
   python .\Control_Drone_Main
 ```
 
-## Demo
 
-Insert gif or link to demo
+## Demonstration
 
-![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0)
+![Untitled ‑ Made with FlexClip (1)](https://github.com/Jcosialls/drone/assets/119425942/cfd56459-cef8-4762-8180-af7dca581747)
 
 
+## Future optimization
+![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0) 

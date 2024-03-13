@@ -3,7 +3,8 @@ import time
 import mediapipe as mp
 
 class handDetector(): 
-    def __init__(self, mode=False, maxHands= 3, detectionCon=False, trackCon=0.5): 
+        #Dectection de 2 mains
+    def __init__(self, mode=False, maxHands= 2, detectionCon=False, trackCon=0.5): 
         self.mode = mode 
         self.maxHands = maxHands
         self.detectionCon = detectionCon
@@ -13,7 +14,8 @@ class handDetector():
         self.hands = self.mpHands.Hands(self.mode,self.maxHands,
                                     self.detectionCon, self.trackCon )
         self.mpDraw = mp.solutions.drawing_utils
-    
+        
+        #Dectection de main
     def findHands(self, img, draw = True):
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         self.results = self.hands.process(imgRGB)
@@ -25,7 +27,8 @@ class handDetector():
                     self.mpDraw.draw_landmarks(img, handlms, 
                                                self.mpHands.HAND_CONNECTIONS)
         return img
-    
+        
+        #Dectection des landmarks de la main
     def findPosition(self, img, handNo=0, draw= True) :
         lmlist = [] 
         myHand = None
@@ -48,7 +51,7 @@ class handDetector():
   
 def main() :
     
-   
+   #Camera
     cTime = 0
     pTime = 0
     cap = cv2.VideoCapture(0)
