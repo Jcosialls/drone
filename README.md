@@ -50,7 +50,18 @@ Plier l'index de votre main sur le plan de la caméra
 
 Faire une rotation de la main en horizontal sur le plan de la caméra
 
-## Tracking drone and Map 3D
+## Tracking drone
+
+Le fichier Control_Drone_Main.py sert à piloter le drone en ayant un retour caméra sur l'écran afin de positionner sa main plus précisément et par conséquent, rendre le pilotage plus aisé.
+
+Le fichier Control_Drone_Main2.py est un test d'implémentation de la sauvegarde de la base de donnée pendant et après un vol.
+
+## Map 3D
+
+Elie met les infos ici
+
+Les fonctions permettant de générer une map contenant la trjectoire du drone n'ont pas encore été testées sur un vol réel.
+
 ## Database
 L'objectif de la base de donnée est de récuperer les données de vol du drone pour les stocker. On pourra par la suite les utiliser pour refaire le parcours sauvegardé.
 
