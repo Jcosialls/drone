@@ -70,7 +70,7 @@ Les étapes sont décrites en utlisant "have_a_plot_handV" à la place de "HPH".
 
 Etape 0 :
   Importer la librairy de votre choix : 
-    ```bash
+    ```
     import have_a_plot.py as HP
     ```
                 ou
