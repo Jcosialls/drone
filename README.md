@@ -48,13 +48,15 @@ Plier l'index de votre main sur le plan de la caméra
 
 #### Question 7 : Comment faire une rotation du drone ?
 
-Faire une rotation de la main en horizontal sur le plan de la caméra
+Faire une rotation de la main à horizontal sur le plan de la caméra
 
 ## Tracking drone
 
 Le fichier Control_Drone_Main.py sert à piloter le drone en ayant un retour caméra sur l'écran afin de positionner sa main plus précisément et par conséquent, rendre le pilotage plus aisé.
 
 Le fichier Control_Drone_Main2.py est un test d'implémentation de la sauvegarde de la base de donnée pendant et après un vol.
+
+Le code analyse différentes parties de la main afin d'en déduire la position de celle-ci. Le drone suit ensuite les consignes données par la position de la main.
 
 ## Map 3D
 
