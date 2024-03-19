@@ -60,9 +60,11 @@ Le fichier Control_Drone_Main2.py est un test d'implémentation de la sauvegarde
 
 La librairie "have_a_plot.py" permet d'affiché un rendue 3D en temps réel. Deux version de cette librairie sont disponible : 
 
-"have_a_plot.py", qui se base sur les retour des capteurs du drone et est donc trés proche de la réalité, mais ne fonctionne pas avec toute les version du drone.
+"have_a_plot.py", qui se base sur les retour des capteurs du drone et est donc trés proche de la réalité, mais ne fonctionne pas avec toute les version du drone. Sa fonction "refresh_coo()" ne demande aucun parametre.
 
-"have_a_plot_handV.py", qui se base sur le commande envoyé au drone pou affiché le 3D, et est donc moins proche de la réalité que "have_a_plot.py", mais fonctionne avec toutes les version du drone.
+"have_a_plot_handV.py", qui se base sur le commande envoyé au drone pou affiché le 3D, et est donc moins proche de la réalité que "have_a_plot.py", mais fonctionne avec toutes les version du drone. Sa fonction "refresh_coo()" prend la position x, y et z en parametres.
+
+Les etapes sont decrite en utlisant "have_a_plot_handV" as "HPH". 
 
 Etape 0 :
   Importer la librairy de votre choix : 
@@ -71,13 +73,22 @@ Etape 0 :
     ```import have_a_plot_handV.py as HPH"```
     
 Etape 1 : 
-  Initializé la fonction avec "HP.init()"
+  Initializé les variable intern avec : 
+  ```HPH.init()```
   
 Etape 2 :
-  Lancer la vue 3D avec la fonction "have_a_plot.plot_the_3D()".
+  Lancer la vue 3D avec la fonction :
+  ```have_a_plot.plot_the_3D()```
 
 Etape 3 : 
-  Actualizez les coordoné aprés chaque commande de mouvement en utilisant 
+  Actualizez les coordoné aprés chaque commande de mouvement :
+  ```refresh_coo(x, y, z)```
+
+Etape 4 :
+  En fin de programme, fermé les processus : 
+  ```HPH.end()```
+
+  
 
 ## Database
 L'objectif de la base de donnée est de récuperer les données de vol du drone pour les stocker. On pourra par la suite les utiliser pour refaire le parcours sauvegardé.
