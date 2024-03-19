@@ -119,5 +119,6 @@ To run tests, run the following command
 ![Untitled ‑ Made with FlexClip (1)](https://github.com/Jcosialls/drone/assets/119425942/cfd56459-cef8-4762-8180-af7dca581747)
 
 
-## Future optimization
+## Futur optimisation
+Utiliser des lunettes de réalité augmentée pour filmer nos mains. Cela permettrai d'avoir une caméra dynamique.
 ![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0) 
