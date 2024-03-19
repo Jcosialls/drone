@@ -122,3 +122,9 @@ To run tests, run the following command
 ## Futur optimisation
 Utiliser des lunettes de réalité augmentée pour filmer nos mains. Cela permettrai d'avoir une caméra dynamique.
 ![](https://th.bing.com/th/id/R.7690812238d0a57a7decd48c57411962?rik=Q95wngrWbuX3ag&pid=ImgRaw&r=0) 
+
+Utiliser notre base de données pour répéter des vols.
+
+Piloter plusieurs drones à la fois.
+![]()
+
