@@ -88,7 +88,8 @@ Etape 4 :
   En fin de programme, fermé les processus : 
   ```HPH.end()```
 
-  
+![Image du fichier csv](Photo/plot_3D_result.png)
+
 
 ## Database
 L'objectif de la base de donnée est de récuperer les données de vol du drone pour les stocker. On pourra par la suite les utiliser pour refaire le parcours sauvegardé.
