@@ -68,7 +68,9 @@ Les etapes sont decrite en utlisant "have_a_plot_handV" as "HPH".
 
 Etape 0 :
   Importer la librairy de votre choix : 
-    ```python import have_a_plot.py as HP```
+    ```bash
+    import have_a_plot.py as HP
+    ```
                 ou
     ```import have_a_plot_handV.py as HPH"```
     
