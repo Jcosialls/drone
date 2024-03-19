@@ -58,13 +58,13 @@ Le fichier Control_Drone_Main2.py est un test d'implémentation de la sauvegarde
 
 ## Map 3D
 
-La librairie "have_a_plot.py" permet d'affiché un rendue 3D en temps réel. Deux version de cette librairie sont disponible : 
+La librairie "have_a_plot.py" permet d'afficher un rendu 3D en temps réel. Deux versions de cette librairie sont disponibles : 
 
-"have_a_plot.py", qui se base sur les retour des capteurs du drone et est donc trés proche de la réalité, mais ne fonctionne pas avec toute les version du drone. Sa fonction "refresh_coo()" ne demande aucun parametre.
+"have_a_plot.py", qui se base sur les retours des capteurs du drone et est donc très proche de la réalité, mais ne fonctionne pas avec toutes les versions du drone. Sa fonction "refresh_coo()" ne demande aucun paramètre.
 
-"have_a_plot_handV.py", qui se base sur le commande envoyé au drone pou affiché le 3D, et est donc moins proche de la réalité que "have_a_plot.py", mais fonctionne avec toutes les version du drone. Sa fonction "refresh_coo()" prend la position x, y et z en parametres.
+"have_a_plot_handV.py", qui se base sur la commande envoyée au drone pour afficher le 3D, et est donc moins proche de la réalité que "have_a_plot.py", mais fonctionne avec toutes les versions du drone. Sa fonction "refresh_coo()" prend la position x, y et z en paramètres.
 
-Les etapes sont decrite en utlisant "have_a_plot_handV" as "HPH". 
+Les étapes sont décrites en utlisant "have_a_plot_handV" à la place de "HPH". 
 
 Etape 0 :
   Importer la librairy de votre choix : 
@@ -75,7 +75,7 @@ Etape 0 :
     ```import have_a_plot_handV.py as HPH"```
     
 Etape 1 : 
-  Initializé les variable intern avec : 
+  Initializer les variables internes avec : 
   ```HPH.init()```
   
 Etape 2 :
@@ -83,11 +83,11 @@ Etape 2 :
   ```have_a_plot.plot_the_3D()```
 
 Etape 3 : 
-  Actualizez les coordoné aprés chaque commande de mouvement :
+  Actualizer les coordonées après chaque commande de mouvement :
   ```refresh_coo(x, y, z)```
 
 Etape 4 :
-  En fin de programme, fermé les processus : 
+  En fin de programme, fermer les processus : 
   ```HPH.end()```
 
 ![Image du fichier csv](Photo/plot_3D_result.png)
